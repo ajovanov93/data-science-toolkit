@@ -1,0 +1,10 @@
+:set -XTypeApplications -XOverloadedStrings -XOverloadedLabels -XTypeOperators -XDataKinds -XFlexibleContexts -XTemplateHaskell
+import qualified Data.Vector as V
+import qualified Control.Foldl as F
+
+import Labels
+import qualified Data.Discrimination as D
+
+import qualified Data.Frame as DF
+import qualified Data.Frame.Extras as DE
+import qualified Data.Frame.Join as DJ
