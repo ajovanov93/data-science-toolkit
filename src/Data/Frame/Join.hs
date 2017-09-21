@@ -8,7 +8,7 @@ import qualified Data.Discrimination.Grouping as DG
 -- Theoretically will exist one day
 -- import Labels(get, recordAppend)
 
-discriminator = DG.hashing
+-- discriminator = DG.hashing
 
 -- https://github.com/Gabriel439/slides/blob/master/lambdaconf/data/exercises/08/Main.hs
 -- https://hackage.haskell.org/package/discrimination-0.2.1/docs/Data-Discrimination.html
