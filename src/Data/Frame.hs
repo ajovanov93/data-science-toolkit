@@ -6,11 +6,9 @@
 {-# LANGUAGE AllowAmbiguousTypes #-}
 {-# LANGUAGE TypeApplications #-}
 
-
 -- TODO: Finish simple ggplot implementation
 
 -- Requires changes to Labels by its author.
--- TODO: Fix writing to csv by implementing ToNamedRecord
 -- TODO: Add joins (discrimination package in backend)
 
 module Data.Frame (
@@ -26,7 +24,7 @@ module Data.Frame (
   ParseException,
   readCsv, -- Works
   EmptyDataFrameWriteException,
-  writeCsv, -- FIXME: Does not work because there are no labels for ToNamedRecord instances
+  writeCsv, -- Works
   printDF -- Works
 ) where
 
@@ -52,9 +50,7 @@ import qualified Data.List as L
 
 -- For groupby
 import qualified Data.Discrimination as D
-
 import Data.Function(on)
-
 import Data.Frame.Instances()
 
 -- Project a column from a data frame to get a vector of values.
@@ -121,9 +117,9 @@ instance Exception ParseException
 
 readCsv :: (FromNamedRecord record) => FilePath -> IO (V.Vector record)
 readCsv path = do
-  f <- BL.readFile path -- rethrow exception or handle it here?
+  f <- BL.readFile path 
   case decodeByName f of
-    Left err       -> throwIO $ ParseException err --return V.empty
+    Left err       -> throwIO $ ParseException err
     Right (_, vec) -> return vec
 
 
