@@ -31,7 +31,6 @@ instance (Enum a, Enum b, Enum c) => Enum (a, b, c) where
          a' = ab `div` constK
          b' = ab `mod` constK
 
-
 -- Actually this led me to the following question.
 -- Assume there are fromEnum instances that yield Z+ from types A and B.
 -- Look for a way to define fromEnum for (A, B) so
