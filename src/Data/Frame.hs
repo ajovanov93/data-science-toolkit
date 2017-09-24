@@ -97,7 +97,6 @@ rowcat :: V.Vector record -> V.Vector record -> V.Vector record
 df1 `rowcat` df2 = df1 V.++ df2
 
 -- To groupby with a composite key generate a new column using (,) tuple constructor and gen first.
--- FIXME: There are no instances for Enum for product types. 
 groupBy :: (Enum value, LI.Has colName value record, GTL.KnownSymbol colName) => 
             V.Vector record -> Proxy colName -> [(value, V.Vector record)]
 groupBy df colName = zip hdr grp'
@@ -131,13 +130,13 @@ readCsv path = do
 data EmptyDataFrameWriteException = EmptyDataFrameWriteException deriving Show
 instance Exception EmptyDataFrameWriteException
 
-writeCsv :: (ToNamedRecord a, Reflect Show a) => V.Vector a -> FilePath -> IO ()
+writeCsv :: (ToNamedRecord a, Labels a) => V.Vector a -> FilePath -> IO ()
 writeCsv df path =
   if V.null df
   then throwIO EmptyDataFrameWriteException
   else BL.writeFile path bs
   where
-      lbl = map fst $ reflect @Show show (V.head df)
+      lbl = labels . pure . V.head $ df
       hdr = V.fromList $ map BS.pack lbl
       bs  = encodeByName hdr (V.toList df)
 

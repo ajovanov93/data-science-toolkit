@@ -61,7 +61,7 @@ main = do
                ]
          )
   
-  --iris `writeCsv` "data/iris_out.csv"
+  iris' `writeCsv` "data/iris_out.csv"
 
   print "Showcase of some functions in data science toolkit"
 

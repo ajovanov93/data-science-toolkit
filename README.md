@@ -18,4 +18,3 @@ The following things need to be added to Labels so DST can progress
 - easy type casts        = cast #value @Integer (#value := 1.3, #test = 1.5) = (#value := 1, #test = 1.5)  or change modify (value -> value) to (value1 -> value2)
 
 They hold back joins, binData, mergeColumns and dropColumns
-Labels.Cassava.Instances needs ToNamedRecord instances for writeCsv
